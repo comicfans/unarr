@@ -127,7 +127,7 @@ off64_t zip_find_next_local_file_entry(ar_stream *stream, off64_t offset)
             if (uint32le(data + i) == SIG_LOCAL_FILE_HEADER)
                 return offset + i;
         }
-        memmove(data, data + count - 4, min(count, BUF_SIZE - (count-4)));
+        memmove(data, data + count - 4, 4);
         offset += count - 4;
         count = (int)ar_read(stream, data + 4, sizeof(data) - 4) + 4;
     }
